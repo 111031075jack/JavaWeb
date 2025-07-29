@@ -50,7 +50,7 @@
 							<td>
 								<%
 									if(user.getUsername().equals(session.getAttribute("username").toString())){
-										out.println("<a class='button-success pure-button'  href='/JavaWeb/user/change/password?id=" + user.getId() + "'>修改密碼</a>");
+										out.println("<a class='button-success pure-button'  href='/JavaWeb/user/change/password" + user.getId() + "'>修改密碼</a>");
 									}
 								%>
 							</td>
