@@ -28,7 +28,7 @@ public class LoginFilter extends HttpFilter {
 		}
 		// 放行
 		chain.doFilter(request, response);
-		
+		System.out.println(1);
 	}
 	
 	
