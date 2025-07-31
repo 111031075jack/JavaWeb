@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpSession;
 
 // 有登入才放行的過濾器
 //@WebFilter(urlPatterns = {"/user", "/user/delete, /user/change/password"})
-@WebFilter(urlPatterns = {"/user/*"})
+@WebFilter(urlPatterns = {"/user/*", "/japanese/class/level", "/beverage"})
 public class LoginFilter extends HttpFilter {
 	
 	@Override
