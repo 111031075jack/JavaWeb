@@ -21,14 +21,21 @@
 				[ 'Eat',	 2 ],
 				[ 'Commute', 2 ],
 				[ 'Watch TV',2 ],
-				[ 'Sleep',	 7 ] ]);
+				[ 'Sleep',	 7 ]
+				]);
 
 		var options = {
-			title : 'My Daily Activities'
+			title : 'My Daily Activities',
+			//is3D: true,
+			pieHole: 0.4
 		};
 
 		var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
+		//var chart = new google.visualization.LineChart(document.getElementById('piechart'));
+		//var chart = new google.visualization.BarChart(document.getElementById('piechart'));
+		//var chart = new google.visualization.ColumnChart(document.getElementById('piechart'));
+		
+		
 		chart.draw(data, options);
 	}
 </script>
