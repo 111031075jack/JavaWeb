@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService{
 		// 進行新密碼更改
 		String newSalt = PasswordHash.generateSalt(); // 取得新鹽
 		String newHash = PasswordHash.getHashPassword(newPassword, newSalt); // 取得新哈希
-		userDao.changePasswordById(id, newHash, oldSalt);
+		userDao.changePasswordById(id, newHash, newSalt);
 	}
 
 	@Override

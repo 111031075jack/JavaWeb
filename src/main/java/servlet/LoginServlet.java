@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 		session.setAttribute("username", username); 
 		
 		// 登入成功之後才有的 priority
-		session.setAttribute("priority", user.getPriorty());
+		session.setAttribute("priority", user.getPriority());
 		//session.setAttribute("user", user);
 		
 		// 重導到使用者頁面

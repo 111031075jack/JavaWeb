@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,14 +15,13 @@ import service.impl.UserServiceImpl;
 
 @WebServlet("/user/change/password")
 public class ChangePasswordServlet extends HttpServlet {
-	
+
 	private UserService userService = new UserServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 重導一個 change_password.jsp 網頁
+		// 重導一個 change_password.jsp 頁面
 		req.getRequestDispatcher("/WEB-INF/view/change_password.jsp").forward(req, resp);
-		
 		
 	}
 	
@@ -31,18 +31,18 @@ public class ChangePasswordServlet extends HttpServlet {
 		String newPassword = req.getParameter("newPassword");
 		
 		try {
-			HttpSession session = req.getSession();
+			HttpSession session = req.getSession(false);
 			String username = session.getAttribute("username").toString();
 			User user = userService.getUserByUsername(username);
-			// 取得 user 的 id
+			// 取得 user id
 			int id = user.getId();
 			// 變更密碼
 			userService.changePasswordById(id, oldPassword, newPassword);
-			req.setAttribute("message", "密碼變更成功");
+			req.setAttribute("message", "密碼修改成功");
 		}catch (Exception e) {
-			e.printStackTrace();
 			req.setAttribute("message", e.getMessage());
 		}
 		req.getRequestDispatcher("/WEB-INF/view/result.jsp").forward(req, resp);
 	}
+	
 }
