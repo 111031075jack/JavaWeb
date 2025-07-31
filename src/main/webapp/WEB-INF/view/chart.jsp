@@ -27,8 +27,7 @@
 			title : 'My Daily Activities'
 		};
 
-		var chart = new google.visualization.PieChart(document
-				.getElementById('piechart'));
+		var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
 		chart.draw(data, options);
 	}
@@ -40,6 +39,8 @@
 	<!-- menu -->
 	<%@include file="/WEB-INF/view/menu.jspf"%>
 
-
-</body>
+	<!-- chart -->
+	<div id="piechart" style="width: 900px; height: 500px;"></div>
+	
+	</body>
 </html>
