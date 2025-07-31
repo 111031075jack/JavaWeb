@@ -81,7 +81,8 @@ public class LoginServlet extends HttpServlet {
 			resp.sendRedirect("/JavaWeb/user");
 		} else {
 			resp.sendRedirect(session.getAttribute("requestURI").toString());
-			session.setAttribute("requestURI", null); // 清空 requestURI
+			//session.setAttribute("requestURI", null); // 清空 requestURI
+			session.removeAttribute("requestURI");
 		}
 		
 		
