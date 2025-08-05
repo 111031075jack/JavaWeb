@@ -36,7 +36,8 @@ public class DroneOrderDaoImpl extends BaseDao implements DroneOrderDao {
 					droneOrder.setPrice(rs.getInt("price"));
 					droneOrder.setOrder_date(rs.getDate("order_date"));
 					droneOrder.setStatus(rs.getString("status"));
-					
+					// 注入到集合中保存
+					droneOrders.add(droneOrder);
 					
 				}
 				
@@ -50,8 +51,7 @@ public class DroneOrderDaoImpl extends BaseDao implements DroneOrderDao {
 
 	@Override
 	public List<DroneOrder> findAll() {
-		
-		return null;
+		return findAll("order_id", true); // 輸入預設參數
 	}
 	
 	
