@@ -62,13 +62,13 @@ INSERT INTO drone_order (customer_name, drone_model, height, speed, quantity, pr
 public class DroneOrder {
 	
 	private int orderId;
-	private String customer_name;
-	private String drone_model;
+	private String customerName;
+	private String droneModel;
 	private int height;
 	private int speed;
 	private int quantity;
 	private int price;
-	private Date order_date;
+	private Date orderDate;
 	private String status;
 	
 }
