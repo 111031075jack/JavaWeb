@@ -1,4 +1,9 @@
 package model;
+
+import java.util.Date;
+
+import lombok.Data;
+
 /*
 
 use web;
@@ -52,9 +57,18 @@ INSERT INTO drone_order (customer_name, drone_model, height, speed, quantity, pr
 ('周志強', 'DJI Mini 3', 80, 46, 1, 17990, '2024-07-15', '未結帳'),
 ('林佳佳', 'DJI Mini 3 Pro', 95, 57, 2, 23990, '2024-07-16', '已結帳');
 
-
-
  * */
+@Data
 public class DroneOrder {
-
+	
+	private int orderId;
+	private String customer_name;
+	private String drone_model;
+	private int height;
+	private int speed;
+	private int quantity;
+	private int price;
+	private Date order_date;
+	private String status;
+	
 }
