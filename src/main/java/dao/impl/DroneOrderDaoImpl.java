@@ -1,5 +1,9 @@
 package dao.impl;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.BaseDao;
@@ -16,7 +20,32 @@ public class DroneOrderDaoImpl extends BaseDao implements DroneOrderDao {
 				order by %s %s
 				""";
 		sql = String.format(sql.trim(), orderByName, asc?"asc":"desc");
-		return null;
+		List<DroneOrder> droneOrders = new ArrayList<>();
+		
+		try(Statement stmt = getConnection().createStatement();
+				ResultSet rs = stmt.executeQuery(sql)){
+				
+				while(rs.next()) {
+					DroneOrder droneOrder = new DroneOrder();
+					droneOrder.setOrderId(rs.getInt("order_id"));
+					droneOrder.setCustomer_name(rs.getString("customer_name"));
+					droneOrder.setDrone_model(rs.getString("drone_model"));
+					droneOrder.setHeight(rs.getInt("height"));
+					droneOrder.setSpeed(rs.getInt("speed"));
+					droneOrder.setQuantity(rs.getInt("quantity"));
+					droneOrder.setPrice(rs.getInt("price"));
+					droneOrder.setOrder_date(rs.getDate("order_date"));
+					droneOrder.setStatus(rs.getString("status"));
+					
+					
+				}
+				
+			
+		}catch (SQLException e) {
+			throw new RuntimeException("查詢失敗: ", e);
+		}
+		
+		return droneOrders;
 	}
 
 	@Override
