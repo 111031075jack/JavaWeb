@@ -11,7 +11,7 @@ public interface TicketDao {
 	
 	void addTicket(Ticket ticket);
 	
-	void updateTicket(int id, Ticket ticket);
+	void updateTicketPrice(int id, int price); // 修改票價
 	
 	void deleteTicket(int id);
 }
