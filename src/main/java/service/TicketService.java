@@ -7,7 +7,7 @@ import model.Ticket;
 public interface TicketService {
 
 	List<Ticket> findAlltTickets();
-	Ticket geTicket(int id);
+	Ticket getTicket(int id);
 	
 	void addTicket(Ticket ticket);
 	void updateTicketPrice(int id, int price);

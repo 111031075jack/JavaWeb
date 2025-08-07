@@ -41,7 +41,7 @@ public class TicketDaoImpl extends BaseDao implements TicketDao {
 	}
 
 	@Override
-	public Ticket geTicket(int id) {
+	public Ticket getTicket(int id) {
 		String sql = "select id, departure, location, class, airline, price from ticket where id = ?";
 		try(PreparedStatement pstmt = getConnection().prepareStatement(sql)){
 			pstmt.setInt(1, id);

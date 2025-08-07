@@ -7,7 +7,7 @@ import model.Ticket;
 public interface TicketDao {
 
 	List<Ticket> findAllTickets();
-	Ticket geTicket(int id);
+	Ticket getTicket(int id);
 	
 	void addTicket(Ticket ticket);
 	
