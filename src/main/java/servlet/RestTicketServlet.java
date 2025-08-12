@@ -30,21 +30,23 @@ public class RestTicketServlet extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/plain;charset=UTF-8");
-		resp.getWriter().println("servlet-path: " + req.getServletPath());
-		resp.getWriter().println("path-info: " + req.getPathInfo());
+		resp.setContentType("application/json;charset=UTF-8");
+		System.out.println("servlet-path: " + req.getServletPath());
+		System.out.println("path-info: " + req.getPathInfo());
 		
 		String pathInfo = req.getPathInfo();
 		if(pathInfo == null) { // 多筆查詢
-			resp.getWriter().println("多筆查詢");
+			System.out.println("多筆查詢");
+			
 			List<Ticket> tickets = service.findAlltTickets();
-			resp.getWriter().println(tickets);
+			// 集合轉 json 陣列
+			resp.getWriter().println(gson.toJson(tickets));
 			
 		} else { // 單筆查詢
-			resp.getWriter().println("單筆查詢");
+			System.out.println("單筆查詢");
 			try {
 				int id = Integer.parseInt(pathInfo.substring(1)); // "字首(位置0的地方) 斜線("/") 不要"
-				resp.getWriter().println("id" + id);
+				System.out.println("id" + id);
 				
 				Ticket ticket = service.getTicket(id);
 				// 物件轉 json
@@ -53,7 +55,7 @@ public class RestTicketServlet extends HttpServlet {
 			}catch (NumberFormatException e) {
 				resp.getWriter().println("未輸入 id 值");
 			}catch (Exception e) {
-				resp.getWriter().println(e.getMessage());
+				System.out.println(e.getMessage());
 		}
 			
 		}
