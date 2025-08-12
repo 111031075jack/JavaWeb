@@ -24,6 +24,7 @@ public class TicketDaoImpl extends BaseDao implements TicketDao {
 					Ticket ticket = new Ticket();
 					ticket.setId(rs.getInt("id"));
 					ticket.setDeparture(rs.getString("departure"));
+					ticket.setLocation(rs.getString("location"));
 					ticket.setClazz(rs.getString("class"));
 					ticket.setLocation(rs.getString("location"));
 					ticket.setAirline(rs.getString("airline"));
@@ -52,6 +53,7 @@ public class TicketDaoImpl extends BaseDao implements TicketDao {
 					Ticket ticket = new Ticket();
 					ticket.setId(rs.getInt("id"));
 					ticket.setDeparture(rs.getString("departure"));
+					ticket.setLocation(rs.getString("location"));
 					ticket.setClazz(rs.getString("class"));
 					ticket.setLocation(rs.getString("location"));
 					ticket.setAirline(rs.getString("airline"));
