@@ -95,7 +95,7 @@ public class TicketDaoImpl extends BaseDao implements TicketDao {
 			pstmt.setInt(1, price);
 			pstmt.setInt(2, id);
 			
-			int rowcount = pstmt.executeUpdate(sql);
+			int rowcount = pstmt.executeUpdate();
 			if(rowcount == 0) {
 				throw new RuntimeException("修改失敗 id=" + id + "price=" + price);
 			}
@@ -115,7 +115,7 @@ String sql = "delete from ticket where id = ?";
 			
 			pstmt.setInt(1, id);
 			
-			int rowcount = pstmt.executeUpdate(sql);
+			int rowcount = pstmt.executeUpdate();
 			if(rowcount == 0) {
 				throw new RuntimeException("刪除失敗 id=" + id);
 			}
