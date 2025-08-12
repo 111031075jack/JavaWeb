@@ -90,4 +90,38 @@ public class RestTicketServlet extends HttpServlet {
 		resp.getWriter().print(gson.toJson(apiResponse));
 	}
 	
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 修改 PUT	  /rest/ticket/1?price=35000
+		String pathInfo = req.getPathInfo();
+		ApiResponse<Ticket> apiResponse = null;
+		try {
+			int id = Integer.parseInt(pathInfo.substring(1)); // "字首(位置0的地方) 斜線("/") 不要"
+			int price = Integer.parseInt(req.getParameter("price"));
+			// 修改
+			service.updateTicketPrice(id, price);
+			apiResponse = new ApiResponse<Ticket>(true, null, "修改成功");
+		}catch (Exception e) {
+			apiResponse = new ApiResponse<Ticket>(false, null, "修改失敗:" + e.getMessage());
+		}
+		resp.getWriter().print(gson.toJson(apiResponse));
+	}
+	
+
+	@Override
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String pathInfo = req.getPathInfo();
+		ApiResponse<Ticket> apiResponse = null;
+		try {
+			int id = Integer.parseInt(pathInfo.substring(1)); // "字首(位置0的地方) 斜線("/") 不要"
+			service.deleteTicket(id);
+			apiResponse = new ApiResponse<Ticket>(true, null, "刪除成功");
+		}catch (Exception e) {
+			apiResponse = new ApiResponse<Ticket>(false, null, "刪除失敗:" + e.getMessage());
+		}
+		resp.getWriter().print(gson.toJson(apiResponse));
+		
+		
+	}
+	
 }
