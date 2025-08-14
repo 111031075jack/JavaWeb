@@ -41,6 +41,36 @@
 			
 			// 配置 WebSocket
 			function setWebSocket(){
+				const wsurl = 'ws://192.168.10.53:8081/JavaWeb/chatserver';
+				webSocket = new WebSocket(wsurl);
+				
+				// 連線成功後會自動調用的函式
+				webSocket.onopen = function () {
+					onOpenButton.disabled = true;
+					onCloseButton.disabled = false;
+					messageInput.disabled = false;
+					onMessageButton.disabled = false;
+				};
+				
+				// 接收來自 websocket server 的訊息會自動調用的函式
+				webSocket.onmessage = function (event) {
+					const message = event.data; // 接收來自 websocket server 的訊息
+					messageHistory.insertAdjacentHTML('afterbegin', message + '<br />'); // 插入資料
+				};
+				
+				// 離線成功後會自動調用的函式
+				webSocket.onclose = function () {
+					onOpenButton.disabled = false;
+					onCloseButton.disabled = true;
+					messageInput.disabled = true;
+					onMessageButton.disabled = true;
+				};
+				
+				// 發生錯誤時會自動調用的函式
+				webSocket.error = function(e){
+					console.log(e);
+					alert(e);
+				}
 				
 			}
 			// 按下 [連線] 按鈕
