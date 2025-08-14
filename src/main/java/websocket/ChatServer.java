@@ -23,18 +23,15 @@ public class ChatServer {
 		message = String.format("%8s %s 說了 %s%n", sdf.format(new Date()), sessionId, message);
 		for(Session session : sessions) {
 			if(session.isOpen()) {
-				try {
-					session.getAsyncRemote().sendText(message); // 將訊息回傳給 client 端
+				session.getAsyncRemote().sendText(message); // 將訊息回傳給 client 端
 				
-				}catch (Exception e) {
-					System.err.println(e.toString());
-				}
 			}
 		}
 	}
 	
 	@OnOpen
 	public void onOpen(Session session) {
+		sessions.add(session);
 		String sessionId = session.getId();
 		System.out.printf("session id: %s 已連入%n", sessionId);
 		String message = String.format("%s 已進入聊天室%n", sessionId);
@@ -51,6 +48,7 @@ public class ChatServer {
 	
 	@OnClose
 	public void onClose(Session session) {
+		sessions.remove(session);
 		String sessionId = session.getId();
 		System.out.printf("session id: %s 已關閉%n", sessionId);
 		String message = String.format("%s 已離開聊天室%n", sessionId);
