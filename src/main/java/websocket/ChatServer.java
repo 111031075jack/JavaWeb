@@ -23,7 +23,7 @@ public class ChatServer {
 		message = String.format("%8s %s 說了 %s%n", sdf.format(new Date()), sessionId, message);
 		for(Session session : sessions) {
 			if(session.isOpen()) {
-				session.getAsyncRemote().sendText(message); // 將訊息回傳給 client 端
+			session.getAsyncRemote().sendText(message); // 將訊息回傳給 client 端
 				
 			}
 		}
