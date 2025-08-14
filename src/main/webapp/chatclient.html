@@ -24,4 +24,44 @@
 		</div>
 		
 	</body>
+	<script type="text/javascript">
+		function startup(){
+			const onOpenButton = document.getElementById('onOpenButton');
+			const onCloseButton = document.getElementById('onCloseButton');
+			const messageInput = document.getElementById('messageInput');
+			const onMessageButton = document.getElementById('onMessageButton');
+			const messageHistory = document.getElementById('messageHistory');
+			
+			onOpenButton.disabled = false;
+			onCloseButton.disabled = true;
+			messageInput.disabled = true;
+			onMessageButton.disabled = true;
+			
+			var webSocket = null;
+			
+			// 配置 WebSocket
+			function setWebSocket(){
+				
+			}
+			// 按下 [連線] 按鈕
+			onOpenButton.addEventListener('click', function() {
+				setWebSocket();
+			});
+			
+			// 按下 [離線] 按鈕
+			onCloseButton.addEventListener('click', function() {
+				webSocket.close(); // 離線關閉
+			});
+			
+			// 按下 [傳送] 按鈕
+			onMessageButton.addEventListener('click', function() {
+				webSocket.send(messageInput.value);
+			});
+			
+			
+		}	
+		
+		window.onload = startup;
+	</script>
+	
 </html>
