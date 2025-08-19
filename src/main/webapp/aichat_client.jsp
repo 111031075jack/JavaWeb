@@ -10,6 +10,7 @@
 	<body style="padding: 20px">
 		<!-- menu -->
 		<%@include file="/WEB-INF/view/menu.jspf" %>
+		
 		<form class="pure-form" method="post" action="/JavaWeb/aichat" target="_result">
 			<fieldset>
 				<legend>AI Chat</legend>
