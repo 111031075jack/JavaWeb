@@ -1,0 +1,40 @@
+Ollama 下載位置
+https://ollama.com/download
+
+模型選擇
+https://ollama.com/search
+例如: https://ollama.com/library/qwen2.5
+
+Qwen2.5:0.5b 是阿里巴巴開發的 Qwen2.5 系列中較小的模型版本，擁有約 5 億（0.5B）參數。
+輕量級：由於參數量較小，適合資源受限的設備（如筆記型電腦、手機）運行，也能透過量化技術在低硬體配置中使用。
+----------------------------------------------------------------------------------------------------------
+1.列出已下載的模型：
+ollama list
+
+2.下載模型：
+ollama pull <model-name>
+例如：
+ollama pull qwen2.5:0.5b
+
+3.移除模型：
+ollama rm <model-name>
+例如：
+ollama rm qwen2.5:0.5b
+
+4.啟動與模型互動的 REPL：
+ollama run <model-name>
+
+5.啟動本地服務以接受 API 請求（像 Java 程式呼叫的 http://localhost:11434/api/chat）：
+ollama serve
+
+POST json
+{ 
+    "model": "qwen2.5:0.5b", 
+    "messages": [ 
+                    { 
+                        "role": "user", 
+                        "content": "%s" 
+                    } 
+    ], 
+    "stream": false 
+}
