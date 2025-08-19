@@ -1,6 +1,12 @@
 package servlet;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -36,6 +42,38 @@ public class AIChatServlet extends HttpServlet {
 		payload = String.format(payload, message);
 		
 		// 發送 post 請求到 http://localhost:11434/api/chat
+		// 1. 建立連線
+		URL url = new URL("http://localhost:11434/api/chat");
+		HttpURLConnection conn = (HttpURLConnection)url.openConnection();
+		
+		// 2. 連線設定
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/json");
+		conn.setDoInput(true);
+		
+		// 3. 資料送出
+		try(OutputStream os = conn.getOutputStream()){
+			os.write(payload.getBytes("utf-8"));
+		}
+		
+		// 4. 讀取回應
+		StringBuilder sb = new StringBuilder();
+		// Java IO 串接鏈
+		// conn.getInputStream() -> byte stream 逐"位元組"讀取
+		// InputStreamReader     -> char stream 逐"字"讀取
+		// BufferedReader        -> 讀取到記憶體,可以逐"行"讀取(字串), 效率較高
+		try(BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"))){
+			String line;
+			while((line = br.readLine()) != null) { // 逐行讀取
+				sb.append(line);
+			}
+		}
+		
+		// 5. 分析結果
+		// 分析 from "content": to: }, 之間的內容
+		int from = sb.toString().indexOf("\"content\"");
+		int to = sb.toString().indexOf("},");
+		String content = sb.toString().substring(from+11, to-1);
 		
 		
 	}
