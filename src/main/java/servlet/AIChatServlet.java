@@ -24,7 +24,7 @@ public class AIChatServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=utf-8");
 		
 		String message = req.getParameter("message"); // 使用者的提問訊息
-		String ollamaResponse = "";
+		
 		
 		// 準備一個 json 的請求
 		String payload = """
@@ -49,7 +49,7 @@ public class AIChatServlet extends HttpServlet {
 		// 2. 連線設定
 		conn.setRequestMethod("POST");
 		conn.setRequestProperty("Content-Type", "application/json");
-		conn.setDoInput(true);
+		conn.setDoOutput(true);
 		
 		// 3. 資料送出
 		try(OutputStream os = conn.getOutputStream()){
