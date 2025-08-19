@@ -26,7 +26,7 @@ ollama run <model-name>
 例如：
 ollama run qwen2.5:0.5b
 
-5.啟動本地服務以接受 API 請求（像 Java 程式呼叫的 http://localhost:11434/api/chat）：
+5.啟動本地服務以接受 API 請求（http://localhost:11434/api/chat）：
 ollama serve
 
 POST json
@@ -35,7 +35,7 @@ POST json
     "messages": [ 
                     { 
                         "role": "user", 
-                        "content": "%s" 
+                        "content": "請簡介台灣" 
                     } 
     ], 
     "stream": false 
