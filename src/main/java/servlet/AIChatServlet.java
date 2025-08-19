@@ -24,12 +24,13 @@ public class AIChatServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=utf-8");
 		
 		String message = req.getParameter("message"); // 使用者的提問訊息
+		String model = req.getParameter("model"); // 模型
 		
 		
 		// 準備一個 json 的請求
 		String payload = """
 				{ 
-    "model": "qwen2.5:0.5b", 
+    "model": "%s", 
     "messages": [ 
                     { 
                         "role": "user", 
@@ -39,7 +40,7 @@ public class AIChatServlet extends HttpServlet {
 				"stream": false 
 			}	
 				""";
-		payload = String.format(payload, message);
+		payload = String.format(payload, model, message);
 		
 		// 發送 post 請求到 http://localhost:11434/api/chat
 		// 1. 建立連線
