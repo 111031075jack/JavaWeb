@@ -23,6 +23,8 @@ ollama rm qwen2.5:0.5b
 
 4.啟動與模型互動的 REPL：
 ollama run <model-name>
+例如：
+ollama run qwen2.5:0.5b
 
 5.啟動本地服務以接受 API 請求（像 Java 程式呼叫的 http://localhost:11434/api/chat）：
 ollama serve
